@@ -67,6 +67,11 @@ namespace Lab11_1StackOverflow.Models
             return DB.Get<Answer>(id);
         }
 
+        public static List<Answer> GetAnswersByQuestionId(int questionId)
+        {
+            return DB.Query<Answer>("SELECT * FROM answer WHERE questionId = @questionId", new { questionId = questionId }).ToList();
+        }
+
         // UPDATE
         public static void Update(Answer ans)
         {
