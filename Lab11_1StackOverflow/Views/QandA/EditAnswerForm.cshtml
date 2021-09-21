@@ -1,0 +1,16 @@
+﻿@model Answer
+@{
+    ViewData["Title"] = "EditAnswerForm";
+}
+
+<h1>Edit Answer</h1>
+
+
+<form method="post" action="/QandA/EditAnswer">
+    <input name="Id" value="@Model.Id" hidden />
+    <input name="Username" value="@Model.Username" hidden />
+    Answer: <input type="text" name="Detail" value="@Model.Detail" /><br />
+    <input name="QuestionId" value="@Model.QuestionId" hidden />
+    <input name="Posted" value="@Model.Posted" hidden />
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</form>

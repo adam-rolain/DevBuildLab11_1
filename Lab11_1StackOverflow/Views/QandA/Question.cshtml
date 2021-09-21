@@ -1,0 +1,23 @@
+﻿@model QuestionWithAnswers
+@{
+    ViewData["Title"] = "Question";
+}
+
+<h1>@Model.Question.Title</h1>
+<h6>@Model.Question.Username</h6>
+<p>@Model.Question.Detail</p>
+<h6>@Model.Question.Posted</h6>
+<h6>@Model.Question.Tags</h6>
+<a href="/QandA/EditQuestionForm?QuestionId=@Model.Question.Id"class="btn btn-secondary">Edit Question</a>
+<br />
+
+@foreach (Answer ans in Model.Answers)
+{
+    <br />
+    <p>@ans.Detail</p>
+    <div>@ans.UpVotes</div>
+    <div>@ans.Username</div>
+    <h6>@ans.Posted</h6>
+    <a href="/QandA/EditAnswerForm?AnswerId=@ans.Id"class="btn btn-secondary">Edit Answer</a>
+}
+

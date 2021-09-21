@@ -7,7 +7,8 @@
 
 @foreach (Question question in Model)
 {
-    <div>@question.Title</div>
-    <div>@question.Detail</div>
-    <div>@question.Posted</div>
+    <a href="/QandA/Question?QuestionId=@question.Id"><h3>@question.Title</h3></a>
+    <p>@question.Detail</p>
+    <h6>@question.Posted</h6>
+    <br />
 }
