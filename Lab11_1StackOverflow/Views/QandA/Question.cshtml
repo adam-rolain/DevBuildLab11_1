@@ -8,7 +8,10 @@
 <p>@Model.Question.Detail</p>
 <h6>@Model.Question.Posted</h6>
 <h6>@Model.Question.Tags</h6>
-<a href="/QandA/EditQuestionForm?QuestionId=@Model.Question.Id"class="btn btn-secondary">Edit Question</a>
+@if (Model.Question.UserId == DAL.CurrentUser.Id)
+{
+    <a href="/QandA/EditQuestionForm?QuestionId=@Model.Question.Id" class="btn btn-secondary">Edit Question</a>
+}
 <br />
 
 @foreach (Answer ans in Model.Answers)
@@ -18,6 +21,10 @@
     <div>@ans.UpVotes</div>
     <div>@ans.UserId</div>
     <h6>@ans.Posted</h6>
-    <a href="/QandA/EditAnswerForm?AnswerId=@ans.Id"class="btn btn-secondary">Edit Answer</a>
+    @if (ans.UserId == DAL.CurrentUser.Id)
+    {
+        <a href="/QandA/EditAnswerForm?AnswerId=@ans.Id" class="btn btn-secondary">Edit Answer</a>
+    }
+    
 }
 

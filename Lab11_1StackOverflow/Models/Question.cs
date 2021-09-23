@@ -11,7 +11,7 @@ namespace Lab11_1StackOverflow.Models
     {
         [Key]
         public int Id { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string Title { get; set; }
         public string Detail { get; set; }
         public DateTime Posted { get; set; }
