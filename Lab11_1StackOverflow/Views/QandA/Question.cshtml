@@ -3,28 +3,49 @@
     ViewData["Title"] = "Question";
 }
 
-<h1>@Model.Question.Title</h1>
-<h6>@Model.Question.UserId</h6>
-<p>@Model.Question.Detail</p>
-<h6>@Model.Question.Posted</h6>
-<h6>@Model.Question.Tags</h6>
-@if (Model.Question.UserId == DAL.CurrentUser.Id)
+@if (DAL.CurrentUser != null)
 {
-    <a href="/QandA/EditQuestionForm?QuestionId=@Model.Question.Id" class="btn btn-secondary">Edit Question</a>
-}
-<br />
-
-@foreach (Answer ans in Model.Answers)
-{
-    <br />
-    <p>@ans.Detail</p>
-    <div>@ans.UpVotes</div>
-    <div>@ans.UserId</div>
-    <h6>@ans.Posted</h6>
-    @if (ans.UserId == DAL.CurrentUser.Id)
+    <h1>@Model.Question.Title</h1>
+    <h6>@Model.UsernamesById[Model.Question.UserId]</h6>
+    <p>@Model.Question.Detail</p>
+    <h6>@Model.Question.Posted</h6>
+    <h6>@Model.Question.Tags</h6>
+    @if (Model.Question.UserId == DAL.CurrentUser.Id)
     {
-        <a href="/QandA/EditAnswerForm?AnswerId=@ans.Id" class="btn btn-secondary">Edit Answer</a>
+        <a href="/QandA/EditQuestionForm?QuestionId=@Model.Question.Id" class="btn btn-secondary">Edit Question</a>
     }
-    
+    <br />
+
+    @foreach (Answer ans in Model.Answers)
+    {
+        <br />
+        <p>@ans.Detail</p>
+        <div><a class="btn btn-success" href="/QandA/UpVote?AnswerId=@ans.Id">Up Vote</a>        @ans.UpVotes        <a class="btn btn-danger" href="/QandA/DownVote?AnswerId=@ans.Id">Down Vote</a></div>
+        <div>@Model.UsernamesById[ans.UserId]</div>
+        <h6>@ans.Posted</h6>
+        @if (ans.UserId == DAL.CurrentUser.Id)
+        {
+            <a href="/QandA/EditAnswerForm?AnswerId=@ans.Id" class="btn btn-secondary">Edit Answer</a>
+        }
+    }
 }
+else
+{
+    <h1>@Model.Question.Title</h1>
+    <h6>@Model.UsernamesById[Model.Question.UserId]</h6>
+    <p>@Model.Question.Detail</p>
+    <h6>@Model.Question.Posted</h6>
+    <h6>@Model.Question.Tags</h6>
+    <br />
+
+    @foreach (Answer ans in Model.Answers)
+    {
+        <br />
+        <p>@ans.Detail</p>
+        <div><a class="btn btn-success" href="/QandA/UpVote?AnswerId=@ans.Id">Up Vote</a>        @ans.UpVotes        <a class="btn btn-danger" href="/QandA/DownVote?AnswerId=@ans.Id">Down Vote</a></div>
+        <div>@Model.UsernamesById[ans.UserId]</div>
+        <h6>@ans.Posted</h6>
+    }
+}
+
 

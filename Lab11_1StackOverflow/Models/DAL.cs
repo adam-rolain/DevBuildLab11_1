@@ -36,6 +36,20 @@ namespace Lab11_1StackOverflow.Models
             return DB.Get<Question>(id);
         }
 
+        public static int GetUserId(int questionId)
+        {
+            List<int> userId = DB.Query<int>("SELECT userId FROM question WHERE id = @id", new { id = questionId }).ToList();
+
+            if (userId.Count > 0)
+            {
+                return userId[0];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         // UPDATE
         public static void Update(Question quest)
         {
@@ -73,6 +87,11 @@ namespace Lab11_1StackOverflow.Models
         public static List<Answer> GetAnswersByQuestionId(int questionId)
         {
             return DB.Query<Answer>("SELECT * FROM answer WHERE questionId = @questionId", new { questionId = questionId }).ToList();
+        }
+
+        public static List<int> GetUserIdsByQuestionId(int questionId)
+        {
+            return DB.Query<int>("SELECT userId FROM answer WHERE questionId = @questionId", new { questionId = questionId }).ToList();
         }
 
         // UPDATE
@@ -143,6 +162,36 @@ namespace Lab11_1StackOverflow.Models
             {
                 return null;
             }
+        }
+
+        public static string GetUsername(int id)
+        {
+            List<string> found = DB.Query<string>("SELECT username FROM user WHERE id = @id", new { id = id }).ToList();
+
+            if (found.Count > 0)
+            {
+                return found[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static Dictionary<int, string> GetUsernamesById(int questionUser, List<int> answerUsers)
+        {
+            answerUsers.Add(questionUser);
+            Dictionary<int, string> usernamesById = new Dictionary<int, string>();
+
+            foreach (int id in answerUsers)
+            {
+                if (!usernamesById.ContainsKey(id))
+                {
+                    usernamesById[id] = DAL.GetUsername(id);
+                }
+            }
+
+            return usernamesById;
         }
     }
 }

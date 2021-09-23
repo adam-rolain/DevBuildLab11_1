@@ -18,8 +18,14 @@ namespace Lab11_1StackOverflow.Controllers
         public IActionResult Question(int QuestionId)
         {
             QuestionWithAnswers qa = new QuestionWithAnswers();
+
             qa.Question = DAL.GetQuestion(QuestionId);
             qa.Answers = DAL.GetAnswersByQuestionId(QuestionId);
+
+            int questionUserId = DAL.GetUserId(QuestionId);
+            List<int> answersUserIds = DAL.GetUserIdsByQuestionId(QuestionId);
+            qa.UsernamesById = DAL.GetUsernamesById(questionUserId, answersUserIds);
+
             return View(qa);
         }
 
@@ -43,6 +49,22 @@ namespace Lab11_1StackOverflow.Controllers
 
         public IActionResult EditAnswer(Answer ans)
         {
+            DAL.Update(ans);
+            return Redirect($"/QandA/Question?QuestionId={ans.QuestionId}");
+        }
+
+        public IActionResult UpVote(int AnswerId)
+        {
+            Answer ans = DAL.GetAnswer(AnswerId);
+            ans.UpVotes++;
+            DAL.Update(ans);
+            return Redirect($"/QandA/Question?QuestionId={ans.QuestionId}");
+        }
+
+        public IActionResult DownVote(int AnswerId)
+        {
+            Answer ans = DAL.GetAnswer(AnswerId);
+            ans.UpVotes--;
             DAL.Update(ans);
             return Redirect($"/QandA/Question?QuestionId={ans.QuestionId}");
         }

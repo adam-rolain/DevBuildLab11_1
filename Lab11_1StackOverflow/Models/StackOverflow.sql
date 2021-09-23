@@ -40,7 +40,8 @@ CREATE TABLE answer (
 INSERT INTO user (username, password, firstName, lastName, email) VALUES ('USER1', 'abc123', 'Riley', 'Shirk', 'RileyShirk@RockCentrailDetroit.com');
 INSERT INTO user (username, password, firstName, lastName, email) VALUES ('USER2', 'abc123', 'Tiia', 'Kansa', 'TiiaKansa@RockCentrailDetroit.com');
 INSERT INTO user (username, password, firstName, lastName, email) VALUES ('USER3', 'abc123', 'Hemory', 'Phifer', 'HemoryPhifer@RockCentrailDetroit.com');
-INSERT INTO user (username, password, firstName, lastName, email) VALUES ('USER4', 'abc123', 'Jeff', 'Cogswell', 'JeffCogswell@GrandCircus.com');
+INSERT INTO user (username, password, firstName, lastName, email) VALUES ('USER4', 'abc123', 'Antonio', 'Manzari', 'AntonioManzari@GrandCircus.com');
+INSERT INTO user (username, password, firstName, lastName, email) VALUES ('USER5', 'abc123', 'Jeff', 'Cogswell', 'JeffCogswell@GrandCircus.com');
 
 INSERT INTO question (userId, title, detail, posted, category, tags, status) VALUES (1, 'QUESTION1', 'QUESTIONDETAILS1', '2021-01-01 12:00:00', 'CATEGORY1', 'TAG1', 1);
 INSERT INTO question (userId, title, detail, posted, category, tags, status) VALUES (2, 'QUESTION2', 'QUESTIONDETAILS2', '2021-01-01 12:00:00', 'CATEGORY2', 'TAG2', 1);
