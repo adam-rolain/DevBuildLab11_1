@@ -7,7 +7,7 @@
 
 <form method="post" action="/QandA/EditQuestion">
     <input name="Id" value="@Model.Id" hidden/>
-    <input name="Username" value="@Model.Username" hidden/>
+    <input name="Username" value="@Model.UserId" hidden/>
     Question Header: <input type="text" name="Title" value="@Model.Title"/><br />
     Question: <input type="text" name="Detail" value="@Model.Detail"/><br />
     <input name="Posted" value="@Model.Posted" hidden/>

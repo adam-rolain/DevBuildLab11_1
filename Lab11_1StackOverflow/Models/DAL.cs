@@ -13,6 +13,9 @@ namespace Lab11_1StackOverflow.Models
         // Database Connection
         public static MySqlConnection DB = new MySqlConnection("Server=localhost;Database=stackoverflow;Uid=root;Password=abc123");
 
+        // Current User
+        public static string CurrentUser;
+
 
         // Question Model CRUD Methods:
 
