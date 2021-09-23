@@ -23,6 +23,22 @@ namespace Lab11_1StackOverflow.Controllers
             return View();
         }
 
+        public IActionResult Login(string email, string password)
+        {
+            int verifiedUserId = DAL.VerifyUser(email, password);
+
+            if (verifiedUserId != -1)
+            {
+                DAL.CurrentUser = DAL.GetUser(verifiedUserId);
+            }
+            else
+            {
+                DAL.CurrentUser = null;
+            }
+
+            return Redirect("/");
+        }
+
         public IActionResult Privacy()
         {
             return View();

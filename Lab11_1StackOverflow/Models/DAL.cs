@@ -13,8 +13,8 @@ namespace Lab11_1StackOverflow.Models
         // Database Connection
         public static MySqlConnection DB = new MySqlConnection("Server=localhost;Database=stackoverflow;Uid=root;Password=abc123");
 
-        // Current User
-        public static string CurrentUser;
+        // Current UserId
+        public static User CurrentUser;
 
 
         // Question Model CRUD Methods:
@@ -87,6 +87,62 @@ namespace Lab11_1StackOverflow.Models
             Answer ans = new Answer();
             ans.Id = id;
             DB.Delete(ans);
+        }
+
+        // User Model CRUD Methods:
+
+        // CREATE
+        // READ
+        public static User GetUser(int id)
+        {
+            return DB.Get<User>(id);
+        }
+        
+        public static int VerifyUser(string emailOrUsername, string password)
+        {
+            User foundUser = GetUserByEmail(emailOrUsername);
+
+            if (foundUser == null)
+            {
+                foundUser = GetUserByUsername(emailOrUsername);
+            }
+
+            if (foundUser == null)
+            {
+                return -1;
+            }
+            else
+            {
+                return foundUser.Id;
+            }
+        }
+
+        public static User GetUserByEmail(string email)
+        {
+            List<User> found = DB.Query<User>("SELECT * FROM user WHERE email = @email", new  { email = email }).ToList();
+
+            if (found.Count > 0)
+            {
+                return found[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static User GetUserByUsername(string username)
+        {
+            List<User> found = DB.Query<User>("SELECT * FROM user WHERE username = @username", new { username = username }).ToList();
+
+            if (found.Count > 0)
+            {
+                return found[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

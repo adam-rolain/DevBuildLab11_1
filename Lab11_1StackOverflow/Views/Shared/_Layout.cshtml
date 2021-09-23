@@ -24,6 +24,37 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="QandA" asp-action="Index">Browse Questions</a>
                         </li>
+                        @if (DAL.CurrentUser == null)
+                        {
+                            <li class="dropdown order-1">
+                                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+                                <ul class="dropdown-menu dropdown-menu-right ml-auto">
+                                    <li class="px-3 py-2">
+                                        <form method="post" action="/Home/Login" class="form" role="form">
+                                            <div class="form-group">
+                                                <input name="email" id="emailInput" placeholder="Email or UserName" class="form-control form-control-sm" type="text" required="">
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="password" id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <h6 class="nav-link text-dark">Welcome @DAL.CurrentUser.FirstName!</h6>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
