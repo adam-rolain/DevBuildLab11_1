@@ -39,6 +39,12 @@ namespace Lab11_1StackOverflow.Controllers
             return Redirect("/");
         }
 
+        public IActionResult Logout()
+        {
+            DAL.CurrentUser = null;
+            return Redirect("/");
+        }
+
         public IActionResult Privacy()
         {
             return View();

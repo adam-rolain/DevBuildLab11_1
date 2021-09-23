@@ -50,8 +50,13 @@
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <h6 class="nav-link text-dark">Welcome @DAL.CurrentUser.FirstName!</h6>
+                            <li class="dropdown order-1">
+                                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Welcome @DAL.CurrentUser.FirstName!<span class="caret"></span></button>
+                                <ul class="dropdown-menu dropdown-menu-right ml-auto">
+                                    <li class="px-3 py-2">
+                                        <a href="/Home/Logout" class="btn btn-primary btn-block">Logout</a>
+                                    </li>
+                                </ul>
                             </li>
                         }
 
