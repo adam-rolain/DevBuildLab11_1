@@ -45,6 +45,18 @@ namespace Lab11_1StackOverflow.Controllers
             return Redirect("/");
         }
 
+        public IActionResult CreateUserForm()
+        {
+            return View();
+        }
+
+        public IActionResult CreateUser(User newUser)
+        {
+            DAL.Insert(newUser);
+            DAL.CurrentUser = newUser;
+            return Redirect("/");
+        }
+
         public IActionResult Privacy()
         {
             return View();

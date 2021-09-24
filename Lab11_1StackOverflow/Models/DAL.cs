@@ -122,6 +122,11 @@ namespace Lab11_1StackOverflow.Models
         // User Model CRUD Methods:
 
         // CREATE
+        public static void Insert(User newUser)
+        {
+            DB.Insert<User>(newUser);
+        }
+
         // READ
         public static User GetUser(int id)
         {
