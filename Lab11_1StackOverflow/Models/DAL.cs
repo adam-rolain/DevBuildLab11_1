@@ -73,6 +73,9 @@ namespace Lab11_1StackOverflow.Models
         // CREATE
         public static void Insert(Answer ans)
         {
+            ans.UserId = DAL.CurrentUser.Id;
+            ans.Posted = DateTime.Now;
+            ans.UpVotes = 0;
             DB.Insert(ans);
         }
 

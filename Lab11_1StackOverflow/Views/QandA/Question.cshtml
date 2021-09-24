@@ -48,4 +48,12 @@ else
     }
 }
 
-
+<br />
+<form method="post" action="/QandA/AddAnswer">
+    <div class="form-group">
+        <label for="detail"><h6>Submit an Answer:</h6></label>
+        <input type="text" name="Detail" id="detail"/>
+        <input type="text" name="QuestionId" value="@Model.Question.Id" hidden/>
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>

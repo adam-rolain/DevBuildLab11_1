@@ -85,5 +85,17 @@ namespace Lab11_1StackOverflow.Controllers
             DAL.DeleteQuestion(QuestionId);
             return Redirect("/");
         }
+
+        public IActionResult AddAnswer(Answer ans)
+        {
+            DAL.Insert(ans);
+            return Redirect($"/QandA/Question?QuestionId={ans.QuestionId}");
+        }
+
+        public IActionResult DeleteAnswer(int AnswerId, int QuestionId)
+        {
+            DAL.DeleteAnswer(AnswerId);
+            return Redirect($"/QandA/Question?QuestionId={QuestionId}");
+        }
     }
 }
