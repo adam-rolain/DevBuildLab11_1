@@ -17,5 +17,6 @@ namespace Lab11_1StackOverflow.Models
         public DateTime Posted { get; set; }
         public string Category { get; set; }
         public string Tags { get; set; }
+        public int Status { get; set; }
     }
 }

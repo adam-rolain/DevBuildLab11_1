@@ -22,6 +22,9 @@ namespace Lab11_1StackOverflow.Models
         // CREATE
         public static void Insert(Question quest)
         {
+            quest.Posted = DateTime.Now;
+            quest.UserId = DAL.CurrentUser.Id;
+            quest.Status = 1;
             DB.Insert(quest);
         }
 

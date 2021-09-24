@@ -68,5 +68,22 @@ namespace Lab11_1StackOverflow.Controllers
             DAL.Update(ans);
             return Redirect($"/QandA/Question?QuestionId={ans.QuestionId}");
         }
+
+        public IActionResult AddQuestionForm()
+        {
+            return View();
+        }
+
+        public IActionResult AddQuestion(Question quest)
+        {
+            DAL.Insert(quest);
+            return Redirect($"/QandA/Question?QuestionId={quest.Id}");
+        }
+
+        public IActionResult DeleteQuestion(int QuestionId)
+        {
+            DAL.DeleteQuestion(QuestionId);
+            return Redirect("/");
+        }
     }
 }
