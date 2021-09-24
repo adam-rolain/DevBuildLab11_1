@@ -1,0 +1,16 @@
+﻿@model List<Question>
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search Results for "@ViewData["Search"]"</h1>
+
+@foreach (Question question in Model)
+{
+    <a href="/QandA/Question?QuestionId=@question.Id"><h3>@question.Title</h3></a>
+    <p>@question.Detail</p>
+    <h6>@question.Posted</h6>
+    <br />
+}
+
+<a href="/QandA/AddQuestionForm" class="btn btn-success">Add Question</a>

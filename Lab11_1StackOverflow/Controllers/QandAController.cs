@@ -97,5 +97,12 @@ namespace Lab11_1StackOverflow.Controllers
             DAL.DeleteAnswer(AnswerId);
             return Redirect($"/QandA/Question?QuestionId={QuestionId}");
         }
+
+        public IActionResult Search(string searchString)
+        {
+            List<Question> questions = DAL.Search(searchString);
+            ViewData["Search"] = searchString;
+            return View(questions);
+        }
     }
 }

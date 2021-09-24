@@ -53,6 +53,11 @@ namespace Lab11_1StackOverflow.Models
             }
         }
 
+        public static List<Question> Search(string searchString)
+        {
+            return DB.Query<Question>("SELECT * FROM question WHERE title LIKE @search OR detail LIKE @search;", new { search = $"%{searchString}%" }).ToList();
+        }
+
         // UPDATE
         public static void Update(Question quest)
         {
